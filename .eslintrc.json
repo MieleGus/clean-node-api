@@ -3,6 +3,9 @@
     "parserOptions": {
         "project": "./tsconfig.json"
     },
-    "plugins": ["prettier"]
+    "plugins": ["prettier"],
+    "rules": {
+        "@typescript-eslint/strict-boolean-expressions": "off"
+    }
 
 }
