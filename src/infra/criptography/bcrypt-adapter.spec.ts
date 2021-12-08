@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/return-await */
 import bcrypt from 'bcrypt';
 import { BcryptAdapter } from './bcrypt-adapter';
 
 jest.mock('bcrypt', () => ({
   async hash(): Promise<string> {
-    return await new Promise((resolve) => resolve('hash'));
+    return new Promise((resolve) => resolve('hash'));
   }
 }));
 
@@ -25,4 +26,11 @@ describe('BCrypt Adapter', () => {
     const hash = await sut.encrypt('any_value');
     expect(hash).toBe('hash');
   });
+
+  // test('Should throw if bcrypt throws', async () => {
+  //   const sut = makeSut();
+  //   jest.spyOn(bcrypt, 'hash').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())));
+  //   const promise = await sut.encrypt('any_value');
+  //   await expect(promise).rejects.toThrow();
+  // });
 });
