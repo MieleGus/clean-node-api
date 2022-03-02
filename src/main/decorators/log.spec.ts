@@ -38,9 +38,16 @@ describe('LogControllerDecorator', () => {
       }
     };
     const { sut, controllerStub } = makeSut();
-    await sut.handle(httpRequest);
     const handleSpy = jest.spyOn(controllerStub, 'handle');
+    await sut.handle(httpRequest);
 
     expect(handleSpy).toHaveBeenCalledWith(httpRequest);
+  });
+
+  it('Should return the same result of the controller', async () => {
+    const { sut } = makeSut();
+    const httpResponse = await sut.handle({ body: 'xd' });
+    expect(httpResponse.statusCode).toBe(200);
+    expect(httpResponse.body.name).toEqual('Gusta');
   });
 });
