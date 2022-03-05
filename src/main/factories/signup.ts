@@ -8,7 +8,7 @@ import { LogControllerDecorator } from '../decorators/log';
 import { LogErrorRepository } from '../../data/protocols/log-error-repository';
 
 class LogErrorRepositoryStub implements LogErrorRepository {
-  async log(stack: string): Promise<void> {
+  async logError(stack: string): Promise<void> {
     return await new Promise((resolve) => resolve());
   }
 }
